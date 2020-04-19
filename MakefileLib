@@ -1,0 +1,19 @@
+TARGET = LibPerf
+OBJS = 
+
+alib = lib/libPerf.a
+
+CFLAGS = -G0 -O3
+INCDIR = $(PSPPATH)/include
+INCDIR += ./include ./libs/include
+ASFLAGS = $(CFLAGS)
+
+LIBDIR += ./libs/lib/
+LDFLAGS =
+LIBS=-lpsprtc -lpspsdk
+
+$(alib): $(OBJS)
+	$(AR) rcs $@ $^
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak
