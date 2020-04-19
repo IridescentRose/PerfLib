@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 
 #ifdef __cplusplus  
 extern "C" {
@@ -6,8 +7,9 @@ extern "C" {
 
 	/**
 	* This method clears the internal timers and mechanisms of PFL
+	* @param fullProfile - setting this to true means that you are using all of PFL (CPU + GPU + VBL), and changes the way calculations work for higher accuracy.
 	*/
-	void PFL_Init();
+	void PFL_Init(bool fullProfile);
 
 	/** 
 	* This method begins a record of when the CPU has begun doing tasks. This should be put immediately at the beginning of your game loop.
@@ -22,27 +24,27 @@ extern "C" {
 	/** 
 	* This method extracts the CPU time taken between the last Start and End of the CPU performance recording (in milliseconds).
 	*/
-	float PFL_GetCPUTime();
+	double PFL_GetCPUTime();
 
 	/**
-	* This method sets the expected frequency for percentage calculations.
+	* This method sets the expected frequency for percentage calculations. THIS DOES NOT ACTUALLY SET YOUR FREQUENCY! (1-333 mhz). This only matters in full profiling mode.
 	*/
 	void PFL_SetCPUFrequency(int frequency);
 
 	/**
-	* This method helps in calculation of the CPU and GPU percentages by setting a targeted framerate. Percentages above 100 mean that the CPU and or GPU is taking longer than expected.
+	* This method helps in calculation of the CPU and GPU percentages by setting a targeted framerate. Percentages above 100 mean that the CPU and or GPU is taking longer than expected. This only matters in non-full profiling mode.
 	*/
 	void PFL_SetTargetFrameRate(int framerate);
 
-	/**
-	* Returns the current frame rate target.
+	/** 
+	* Returns the current frame rate target. This only matters in non-full profiling mode.
 	*/
 	int PFL_GetTargetFrameRate();
 
 	/**
-	* This method extracts the CPU time taken between the last Start and End of the CPU performance recording. This method requires the VBL time as well.
+	* This method extracts the CPU time taken between the last Start and End of the CPU performance recording.
 	*/
-	float PFL_GetCPUPercentage();
+	double PFL_GetCPUPercentage();
 
 	/**
 	* This method begins a record of when the GPU begins doing tasks. This should be put immediately after sceGuFinish() and before sceGuSync(0, 0)
@@ -67,17 +69,17 @@ extern "C" {
 	/**
 	* This method extracts the total GPU time taken.
 	*/
-	float PFL_GetGPUTime();
+	double PFL_GetGPUTime();
 
 	/**
-	* This method extracts the total GPU time as a percentage. This method requires the VBL time as well.
+	* This method extracts the total GPU time as a percentage.
 	*/
-	float PFL_GetGPUPercentage();
+	double PFL_GetGPUPercentage();
 
 	/**
 	* This method extracts the total VBL time taken.
 	*/
-	float PFL_GetVBLTime();
+	double PFL_GetVBLTime();
 
 
 #ifdef __cplusplus  
