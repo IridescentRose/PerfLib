@@ -18,7 +18,7 @@ void PFL_Init(bool fullProfile) {
 /**
 * This method begins a record of when the CPU has begun doing tasks. This should be put immediately at the beginning of your game loop.
 */
-void PFL_StartCPURecord() {
+void PFL_BeginCPURecord() {
 	sceRtcGetCurrentTick(&lastTick);
 }
 
