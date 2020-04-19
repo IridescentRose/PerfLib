@@ -23,10 +23,15 @@
 # Compiled Static libraries
 *.lai
 *.la
-*.a
 *.lib
 
 # Executables
 *.exe
 *.out
 *.app
+*.PBP
+*.SFO
+*.PRX
+*.ELF
+
+*.bat
