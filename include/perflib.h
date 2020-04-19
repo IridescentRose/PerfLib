@@ -7,9 +7,9 @@ extern "C" {
 
 	/**
 	* This method clears the internal timers and mechanisms of PFL
-	* @param fullProfile - setting this to true means that you are using all of PFL (CPU + GPU + VBL), and changes the way calculations work for higher accuracy.
+	* @param frameRelative - setting this to true means that you compare percentage of GPU vs CPU. This is useful for finding bottlenecks.
 	*/
-	void PFL_Init(bool fullProfile);
+	void PFL_Init(bool frameRelative);
 
 	/** 
 	* This method begins a record of when the CPU has begun doing tasks. This should be put immediately at the beginning of your game loop.
@@ -25,11 +25,6 @@ extern "C" {
 	* This method extracts the CPU time taken between the last Start and End of the CPU performance recording (in milliseconds).
 	*/
 	double PFL_GetCPUTime();
-
-	/**
-	* This method sets the expected frequency for percentage calculations. THIS DOES NOT ACTUALLY SET YOUR FREQUENCY! (1-333 mhz). This only matters in full profiling mode.
-	*/
-	void PFL_SetCPUFrequency(int frequency);
 
 	/**
 	* This method helps in calculation of the CPU and GPU percentages by setting a targeted framerate. Percentages above 100 mean that the CPU and or GPU is taking longer than expected. This only matters in non-full profiling mode.

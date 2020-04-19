@@ -12,6 +12,7 @@ LIBS= -lperf -lpsprtc -lpspsdk -lpspgum -lpspgu -lm
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = PerfLib Cube Sample
+BUILD_PRX = 1
 
 PSPSDK=$(shell psp-config --pspsdk-path)
 include $(PSPSDK)/lib/build.mak

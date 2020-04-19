@@ -81,7 +81,7 @@ double PFL_GetCPUPercentage() {
 		return cpu_dt / fpsTime;
 	}
 	else {
-		return (double)(cpuAbsTime - vblAbsTime) * 10000.0 / ((double)cpuFreq / 2.0);
+		return cpu_dt / vbl_dt * 100.0;
 	}
 }
 
@@ -126,7 +126,7 @@ void PFL_EndVBLRecord() {
 * This method extracts the total GPU time taken.
 */
 double PFL_GetGPUTime() {
-	return gpu_dt;
+	return gpu_dt * 1000.0;
 }
 
 /**
@@ -137,7 +137,7 @@ double PFL_GetGPUPercentage() {
 		return gpu_dt / fpsTime;
 	}
 	else {
-		return (double)(gpuAbsTime - vblAbsTime) * 10000.0 / ((double)cpuFreq / 2.0);
+		return gpu_dt / vbl_dt * 100.0;
 	}
 }
 
@@ -145,5 +145,5 @@ double PFL_GetGPUPercentage() {
 * This method extracts the total VBL time taken.
 */
 double PFL_GetVBLTime() {
-	return vbl_dt;
+	return vbl_dt * 1000.0;
 }
